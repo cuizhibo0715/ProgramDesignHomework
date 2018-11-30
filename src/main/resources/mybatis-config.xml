@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+
+    <!--1.首先是资源文件的设置 引入外部资源文件 可以通过properteis对连接数据库属性进行设置-->
+    <properties resource="db.properties"/>
+
+    <!--2.Mybatis-setting 会改变mybatis的行为-->
+    <!--<settings>-->
+        <!--<setting name="cacheEnabled" value="true"/>-->
+    <!--</settings>-->
+
+
+    <!--3.为类的全限定名称起别名 这样就可以在mapper.xml中使用类-->
+    <typeAliases>
+        <!--<typeAlias type="model.User" alias="user"/>-->
+        <!--<typeAlias type="model.Address" alias="address"/>-->
+        <!--可以通过package 为包下所以的类 起一个默认的别名-->
+        <package name="team.hs.libsys.pojo"/>
+    </typeAliases>
+
+    <!--插件-->
+    <!--<plugins>-->
+        <!--&lt;!&ndash;&lt;!&ndash;使用自定义的插件&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<plugin interceptor="plugin.MyPlugin">&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="Name" value="Hhaha"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="XU" value="XIIXIX"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;分页插件的使用！&ndash;&gt;-->
+        <!--&lt;!&ndash; com.github.pagehelper为PageHelper类所在包名 &ndash;&gt;-->
+        <!--&lt;!&ndash;<plugin interceptor="com.github.pagehelper.PageInterceptor">&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash; 使用下面的方式配置参数，后面会有所有的参数介绍 &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="param1" value="value1"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
+
+    <!--</plugins>-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClass}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.pass}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+
+    <mappers>
+
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/BookMapper.xml"/>
+        <!--<mapper resource="mapper/UserMapperPlus.xml"/>-->
+        <!--<mapper resource="mapper/Address.xml"/>-->
+
+    </mappers>
+
+
+</configuration>
